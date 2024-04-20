@@ -7,6 +7,7 @@ import { fontNames } from "@/theme/fonts";
 import { StyledComponentsRegistry } from "@/lib/registry";
 import { theme } from "@/theme";
 import { GlobalStyles } from "@/theme/global";
+import { GSAPInitializer } from "@/components/GSAPInitializer";
 
 export default function RootLayout({
   children,
@@ -19,6 +20,7 @@ export default function RootLayout({
         <StyledComponentsRegistry>
           <ThemeProvider theme={theme}>
             <GlobalStyles />
+            <GSAPInitializer />
             {children}
           </ThemeProvider>
         </StyledComponentsRegistry>

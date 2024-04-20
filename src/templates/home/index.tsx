@@ -1,5 +1,11 @@
-import * as S from "./styles";
+"use client";
+
+import { PreLoading } from "@/components/PreLoading";
 
 export const HomeTemplate = () => {
-  return <S.Main>Teste</S.Main>;
+  return (
+    <PreLoading onFinishLoading={() => null}>
+      <div />
+    </PreLoading>
+  );
 };

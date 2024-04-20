@@ -1,9 +1,18 @@
 import "styled-components";
 
+const padding = 16;
+
 export const theme = {
-  white: "#fff",
-  black: "#000",
-  blackCharcoal: "#303030",
+  colors: {
+    white: "#fff",
+    black: "#000",
+    blackCharcoal: "#303030",
+  },
+  padding,
+  position: {
+    xCenter: `calc(50vw - 50% - ${padding}px)`,
+    yCenter: `calc(50vh - 50% - ${padding}px)`,
+  },
 };
 
 type Theme = typeof theme;

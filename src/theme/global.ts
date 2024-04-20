@@ -20,7 +20,7 @@ export const GlobalStyles = createGlobalStyle`
       border: 0;
       font-family: var(--tungsten);
       font-weight: 400;
-      color: ${({ theme }) => theme.white};
+      color: ${({ theme }) => theme.colors.white};
       vertical-align: baseline;
   }
   
@@ -47,9 +47,14 @@ export const GlobalStyles = createGlobalStyle`
   }
   // ========== RESET END ========== //
 
+  html {
+    height: 100%;
+  }
+
   body {
-    background-color: ${({ theme }) => theme.blackCharcoal};
-    overflow-x: hidden;
+    height: calc(100% - ${({ theme }) => theme.padding * 2}px);
+    padding: ${({ theme }) => theme.padding}px;
+    background-color: ${({ theme }) => theme.colors.blackCharcoal};
   }
 
   a {
