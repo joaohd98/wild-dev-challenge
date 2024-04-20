@@ -1,3 +1,12 @@
 {
-  "extends": "next/core-web-vitals"
+  "extends": ["@madebywild/eslint-config-base", "@madebywild/eslint-config", "@madebywild/eslint-config-typescript"],
+  "overrides": [
+    {
+      // the new next route system makes the export default for pages mandatory
+      "files": ["src/app/*.tsx"],
+      "rules": {
+        "import/no-default-export": "off"
+      }
+    }
+  ]
 }
