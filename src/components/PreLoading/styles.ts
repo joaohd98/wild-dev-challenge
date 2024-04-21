@@ -1,11 +1,8 @@
 "use client";
 
 import styled, { css } from "styled-components";
-import { Container } from "@/theme/styles/container";
 
-export const PreLoading = styled(Container)`
-  height: auto;
-`;
+export const PreLoading = styled.div``;
 
 export const XYZContainer = styled.div`
   position: absolute;
@@ -18,8 +15,8 @@ export const XYZContainer = styled.div`
 `;
 
 export const XYZName = styled.h1`
-  font-size: 20px;
-  line-height: 26.4px;
+  font-size: 18px;
+  line-height: 24.4px;
   letter-spacing: 0.08em;
   -webkit-text-stroke: 0.2px ${({ theme }) => theme.colors.white};
   text-transform: uppercase;

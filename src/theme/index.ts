@@ -12,12 +12,12 @@ export const theme = {
   screenHeight: `calc(100% - ${padding * 2}px)`,
   padding: `${padding}px`,
   position: {
-    xLeft: `0`,
+    xLeft: `${padding}px`,
     xCenter: `calc(50vw - 50% - ${padding}px)`,
-    xRight: `calc(100vw - 100% - ${padding * 2}px)`,
-    yTop: 0,
+    xRight: `calc(100vw - 100% - ${padding}px)`,
+    yTop: `${padding}px`,
     yCenter: `calc(50vh - 50% - ${padding}px)`,
-    yBottom: `calc(100vh - 100% - ${padding * 2}px)`,
+    yBottom: `calc(100vh - 100% - ${padding}px)`,
   },
 };
 
