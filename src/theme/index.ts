@@ -7,11 +7,17 @@ export const theme = {
     white: "#fff",
     black: "#000",
     blackCharcoal: "#303030",
+    blackRaisin: "#202020",
   },
-  padding,
+  screenHeight: `calc(100% - ${padding * 2}px)`,
+  padding: `${padding}px`,
   position: {
+    xLeft: `0`,
     xCenter: `calc(50vw - 50% - ${padding}px)`,
+    xRight: `calc(100vw - 100% - ${padding * 2}px)`,
+    yTop: 0,
     yCenter: `calc(50vh - 50% - ${padding}px)`,
+    yBottom: `calc(100vh - 100% - ${padding * 2}px)`,
   },
 };
 

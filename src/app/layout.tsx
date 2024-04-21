@@ -21,7 +21,7 @@ export default function RootLayout({
           <ThemeProvider theme={theme}>
             <GlobalStyles />
             <GSAPInitializer />
-            {children}
+            <main>{children}</main>
           </ThemeProvider>
         </StyledComponentsRegistry>
       </body>

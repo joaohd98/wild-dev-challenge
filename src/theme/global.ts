@@ -47,13 +47,11 @@ export const GlobalStyles = createGlobalStyle`
   }
   // ========== RESET END ========== //
 
-  html {
+  html, body, main {
     height: 100%;
   }
 
   body {
-    height: calc(100% - ${({ theme }) => theme.padding * 2}px);
-    padding: ${({ theme }) => theme.padding}px;
     background-color: ${({ theme }) => theme.colors.blackCharcoal};
   }
 

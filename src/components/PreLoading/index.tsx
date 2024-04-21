@@ -16,7 +16,6 @@ export const PreLoading = ({ children, onFinishLoading }: PreLoadingProps) => {
       <S.XYZContainer ref={containerRef}>
         <S.XYZName>{C.XYZPhotography}</S.XYZName>
       </S.XYZContainer>
-      {children}
     </S.PreLoading>
   );
 };

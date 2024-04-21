@@ -1,10 +1,10 @@
 "use client";
 
 import styled, { css } from "styled-components";
+import { Container } from "@/theme/styles/container";
 
-export const PreLoading = styled.main`
-  position: relative;
-  height: 100%;
+export const PreLoading = styled(Container)`
+  height: auto;
 `;
 
 export const XYZContainer = styled.div`
@@ -18,10 +18,11 @@ export const XYZContainer = styled.div`
 `;
 
 export const XYZName = styled.h1`
-  font-size: 32px;
-  line-height: 38.4px;
+  font-size: 20px;
+  line-height: 26.4px;
   letter-spacing: 0.08em;
-  -webkit-text-stroke: 0.4px ${({ theme }) => theme.colors.white};
+  -webkit-text-stroke: 0.2px ${({ theme }) => theme.colors.white};
+  text-transform: uppercase;
 
   div {
     color: transparent;
