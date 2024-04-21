@@ -9,10 +9,28 @@ export const HomeTemplate = ({ pictures }: HomeTemplateProps) => {
   return (
     <>
       <PreLoading onFinishLoading={() => null} />
-      <ArtBackground current={pictures[3]} pictures={pictures}>
-        <CardPicture picture={pictures[2]} position="left" shouldAnimatedWhenChange={() => true} />
-        <CardPicture picture={pictures[3]} position="center" shouldAnimatedWhenChange={() => true} />
-        <CardPicture picture={pictures[4]} position="right" shouldAnimatedWhenChange={() => true} />
+      <ArtBackground current={pictures[1]} pictures={pictures}>
+        <CardPicture
+          picture={pictures[2]}
+          total={5}
+          current={2}
+          position="left"
+          shouldAnimatedWhenChange={() => true}
+        />
+        <CardPicture
+          picture={pictures[3]}
+          total={5}
+          current={2}
+          position="center"
+          shouldAnimatedWhenChange={() => true}
+        />
+        <CardPicture
+          picture={pictures[4]}
+          total={5}
+          current={2}
+          position="right"
+          shouldAnimatedWhenChange={() => true}
+        />
       </ArtBackground>
     </>
   );
