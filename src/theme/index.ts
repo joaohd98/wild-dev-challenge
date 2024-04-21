@@ -5,6 +5,7 @@ const padding = 16;
 export const theme = {
   colors: {
     white: "#fff",
+    whiteOpacity: "rgba(255, 255, 255, 0.1)",
     black: "#000",
     blackCharcoal: "#303030",
     blackRaisin: "#202020",

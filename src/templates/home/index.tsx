@@ -9,7 +9,7 @@ export const HomeTemplate = ({ pictures }: HomeTemplateProps) => {
   return (
     <>
       <PreLoading onFinishLoading={() => null} />
-      <ArtBackground current={pictures[1]} pictures={pictures}>
+      <ArtBackground current={pictures[3]} pictures={pictures}>
         <CardPicture
           picture={pictures[2]}
           total={5}

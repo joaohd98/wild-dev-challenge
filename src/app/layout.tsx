@@ -1,5 +1,4 @@
 "use client";
-"use client";
 
 import { type ReactNode } from "react";
 import { ThemeProvider } from "styled-components";
@@ -8,6 +7,7 @@ import { StyledComponentsRegistry } from "@/lib/registry";
 import { theme } from "@/theme";
 import { GlobalStyles } from "@/theme/global";
 import { GSAPInitializer } from "@/components/GSAPInitializer";
+import { CustomCursorProvider } from "@/contexts/custom-cursor";
 
 export default function RootLayout({
   children,
@@ -21,7 +21,9 @@ export default function RootLayout({
           <ThemeProvider theme={theme}>
             <GlobalStyles />
             <GSAPInitializer />
-            <main>{children}</main>
+            <CustomCursorProvider>
+              <main>{children}</main>
+            </CustomCursorProvider>
           </ThemeProvider>
         </StyledComponentsRegistry>
       </body>

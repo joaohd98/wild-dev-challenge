@@ -13,8 +13,8 @@ export const CardPicture = ({ picture, position, current, total, shouldAnimatedW
           <S.IndicatorSlideView>
             <S.IndicatorText>{C.qtSlide(current, total)}</S.IndicatorText>
             <S.Slides>
-              {C.slides(current, total).map((isCurrent) => (
-                <S.SlideDot $isCurrent={isCurrent} />
+              {C.slides(current, total).map((isCurrent, index) => (
+                <S.SlideDot key={index} $isCurrent={isCurrent} />
               ))}
             </S.Slides>
           </S.IndicatorSlideView>
