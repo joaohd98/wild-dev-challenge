@@ -55,6 +55,7 @@ export const GlobalStyles = createGlobalStyle`
   main {
     opacity: 0;
     visibility: hidden;
+    pointer-events: none;
   }
 
   a {

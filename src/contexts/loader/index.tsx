@@ -22,6 +22,8 @@ export const LoaderProvider = ({
     }
 
     const main = document.querySelector("main");
+
+    gsap.set(main, { pointerEvents: "auto" });
     gsap.to(main, { autoAlpha: 1, duration: 0.3 });
   }, [hasLoading]);
 
