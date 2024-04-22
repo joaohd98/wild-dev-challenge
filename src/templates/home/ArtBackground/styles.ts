@@ -26,6 +26,7 @@ export const Container = styled.div`
     height: 100%;
     width: 100%;
     backdrop-filter: blur(70px);
+    -webkit-backdrop-filter: blur(70px);
     will-change: transform;
   }
 `;
