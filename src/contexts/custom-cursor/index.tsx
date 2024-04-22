@@ -1,12 +1,14 @@
-import { createContext, type ReactNode, useContext } from "react";
+import { createContext, type ReactNode, useContext, useEffect, useState } from "react";
+import gsap from "gsap";
 import { type CustomCursorContextProps } from "./props";
 import { CustomCursor } from "@/components/CustomCursor";
+import { type CustomCursorProps } from "@/components/CustomCursor/props";
 
 const DEFAULT_STATE: CustomCursorContextProps = {
   showAsLink: () => null,
-  removeLink: () => null,
+  noLongerLink: () => null,
   showAsProgress: () => null,
-  removeProgress: () => null,
+  noLongerProgress: () => null,
 };
 
 const CustomCursorContext = createContext(DEFAULT_STATE);
@@ -16,24 +18,42 @@ export const CustomCursorProvider = ({
 }: Readonly<{
   children: ReactNode;
 }>) => {
-  const showAsLink: CustomCursorContextProps["showAsLink"] = (value) => null;
+  const [props, setProps] = useState<CustomCursorProps>({ visible: false });
 
-  const removeLink: CustomCursorContextProps["removeLink"] = () => null;
+  useEffect(() => {
+    gsap.set(document.body, { cursor: props.visible ? "none" : "inherit" });
+  }, [props.visible]);
 
-  const showAsProgress: CustomCursorContextProps["showAsProgress"] = (value) => null;
+  const showAsLink: CustomCursorContextProps["showAsLink"] = (link) => {
+    setProps({
+      link,
+      visible: true,
+      progress: undefined,
+    });
+  };
 
-  const removeProgress: CustomCursorContextProps["removeProgress"] = () => null;
+  const noLongerLink: CustomCursorContextProps["noLongerLink"] = () => setProps({ ...props, visible: false });
+
+  const showAsProgress: CustomCursorContextProps["showAsProgress"] = (progress) => {
+    setProps({
+      progress,
+      visible: true,
+      link: undefined,
+    });
+  };
+
+  const noLongerProgress: CustomCursorContextProps["noLongerProgress"] = () => setProps({ ...props, visible: false });
 
   return (
     <CustomCursorContext.Provider
       value={{
         showAsLink,
-        removeLink,
+        noLongerLink,
         showAsProgress,
-        removeProgress,
+        noLongerProgress,
       }}
     >
-      <CustomCursor />
+      <CustomCursor {...props} />
       {children}
     </CustomCursorContext.Provider>
   );

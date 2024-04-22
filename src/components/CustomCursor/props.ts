@@ -1,4 +1,5 @@
 export interface CustomCursorProps {
-  progress?: { value: number; visible: boolean };
-  link?: { text: string; onClick: () => void };
+  visible: boolean;
+  progress?: number;
+  link?: string;
 }

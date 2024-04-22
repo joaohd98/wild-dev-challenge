@@ -1,6 +1,6 @@
 export interface CustomCursorContextProps {
   showAsLink: (text: string) => void;
-  removeLink: () => void;
+  noLongerLink: () => void;
   showAsProgress: (value: number) => void;
-  removeProgress: () => void;
+  noLongerProgress: () => void;
 }
