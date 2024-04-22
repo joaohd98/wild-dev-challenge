@@ -1,63 +1,68 @@
-import styled, { css } from "styled-components";
+import styled from "styled-components";
 
-export const CustomCursor = styled.div<{ $visible: boolean }>`
+export const CustomCursor = styled.div`
   position: absolute;
   width: 42px;
   height: 42px;
   top: -21px;
   left: -21px;
 
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  flex-direction: column;
-  gap: 14px;
-
   z-index: 10;
   pointer-events: none;
 
   mix-blend-mode: exclusion;
-
-  visibility: ${({ $visible }) => ($visible ? "visible" : "hidden")};
 `;
 
-export const CircleSvg = styled.svg`
+export const ProgressSVG = styled.svg<{ $visible: boolean }>`
   position: absolute;
   top: 50%;
   left: 50%;
   transform: translate(-50%, -50%) rotate(-90deg);
   width: 40px;
   height: 40px;
+  mix-blend-mode: exclusion;
 
-  circle {
-    fill: none;
-    stroke-width: 1.2;
-  }
+  opacity: ${({ $visible }) => ($visible ? 1 : 0)};
+  transition: opacity 0.15s ease-in;
 `;
 
 export const CircleEmpty = styled.circle`
   stroke: ${({ theme }) => theme.colors.whiteOpacity};
+  fill: none;
+  stroke-width: 2;
 `;
 
 export const CircleProgress = styled.circle<{ $progress?: number }>`
   stroke-dashoffset: -100;
   stroke: ${({ theme }) => theme.colors.white};
   stroke-linecap: round;
+  fill: none;
+  stroke-width: 2;
 `;
 
-export const Dot = styled.div<{ $hasLink: boolean }>`
-  width: 4px;
-  height: 4px;
+export const CircleSmallDot = styled.circle`
+  fill: ${({ theme }) => theme.colors.white};
+  stroke-width: 2;
+`;
+
+export const LinkContainer = styled.div<{ $visible: boolean }>`
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  gap: 14px;
+  margin-top: 10px;
+
+  opacity: ${({ $visible }) => ($visible ? 1 : 0)};
+  transition: opacity 0.15s ease-in;
+`;
+
+export const Dot = styled.div`
+  width: 24px;
+  height: 24px;
   border-radius: 100%;
   background-color: ${({ theme }) => theme.colors.white};
-
-  ${({ $hasLink, theme }) =>
-    $hasLink &&
-    css`
-      width: 24px;
-      height: 24px;
-      box-shadow: ${theme.colors.white} 0px 0px 12px;
-    `}
+  box-shadow: ${({ theme }) => theme.colors.white} 0px 0px 12px;
 `;
 
 export const Text = styled.p`
