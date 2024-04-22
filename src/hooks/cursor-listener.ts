@@ -1,7 +1,7 @@
 import { type DependencyList, type RefObject, useEffect } from "react";
 
 export const useCursorListener = (
-  refElement: RefObject<HTMLElement | null> | HTMLElement,
+  refElement: RefObject<HTMLElement | null> | "body",
   callbacks: {
     onListenMouseEnter?: (event: MouseEvent) => void;
     onListenMouseMove?: (event: MouseEvent) => void;
@@ -10,7 +10,7 @@ export const useCursorListener = (
   deps: DependencyList
 ) => {
   useEffect(() => {
-    const element = refElement instanceof HTMLElement ? refElement : refElement.current;
+    const element = refElement === "body" ? document.body : refElement.current;
     if (!element) {
       return;
     }

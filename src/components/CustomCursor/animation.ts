@@ -9,7 +9,7 @@ export const useCustomCursorAnimation = () => {
     gsap.to(cursorRef.current, { x: event.clientX, y: event.clientY, duration: 0.05 });
 
   useCursorListener(
-    document.body,
+    "body",
     {
       onListenMouseEnter: onMouseListener,
       onListenMouseMove: onMouseListener,
