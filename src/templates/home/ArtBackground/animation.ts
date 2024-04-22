@@ -13,10 +13,8 @@ export const useArtBackgroundAnimation = (current: number) => {
       },
     });
 
-    tl.set(backgroundsRef.current[currentValue], { "--blur": 100 });
     tl.to(backgroundsRef.current[preValue], { autoAlpha: 0 });
     tl.to(backgroundsRef.current[currentValue], { autoAlpha: 1 }, "<");
-    tl.set(backgroundsRef.current[preValue], { "--blur": 0 });
   }, current);
 
   return {

@@ -13,25 +13,33 @@ export const BackgroundsContainer = styled.div`
   }
 `;
 
-export const Background = styled.div<{ $url: string }>`
+export const Container = styled.div`
   position: absolute;
-  left: 0;
-  top: 0;
   height: 100%;
   width: 100%;
 
-  &:before {
+  &:after {
     content: "";
     position: absolute;
-    left: -9.75%;
-    top: -87%;
-    height: 274%;
-    width: 116%;
-    background-image: url("${({ $url }) => $url}");
-    background-size: cover;
-    background-repeat: no-repeat;
-    z-index: -1;
+    top: 0;
+    left: 0;
+    height: 100%;
+    width: 100%;
+    backdrop-filter: blur(70px);
+    will-change: transform;
   }
+`;
+
+export const Background = styled.div<{ $url: string }>`
+  position: absolute;
+  left: -9.75%;
+  top: -87%;
+  height: 274%;
+  width: 116%;
+  background-image: url("${({ $url }) => $url}");
+  background-size: cover;
+  background-repeat: no-repeat;
+  z-index: -1;
 `;
 
 export const InfoContainer = styled.div`

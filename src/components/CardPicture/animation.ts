@@ -7,9 +7,10 @@ export const useCardPictureAnimation = (isFocused: boolean) => {
   const textsRef = useRef(null);
 
   useEffect(() => {
-    const tl = gsap.timeline({ defaults: { ease: "power1.out" } });
+    const tl = gsap.timeline({ defaults: { ease: "power1.out", duration: 0.3 } });
 
-    tl.to(textsRef.current, { autoAlpha: isFocused ? 1 : 0, duration: 0.3 });
+    tl.to(textsRef.current, { autoAlpha: isFocused ? 1 : 0 });
+    tl.to(artRef.current, { scale: 1, rotationY: 0, rotationX: 0, overwrite: "auto" }, "<");
   }, [isFocused]);
 
   const onMouseEnterOrLeaveCard = (type: "enter" | "leave") => {
@@ -28,7 +29,7 @@ export const useCardPictureAnimation = (isFocused: boolean) => {
         break;
       }
       case "leave": {
-        tl.to(artRef.current, { scale: 1, rotationY: 0, rotateX: 0 });
+        tl.to(artRef.current, { scale: 1, rotationY: 0, rotationX: 0 });
         tl.to(textsRef.current, { autoAlpha: 1 });
       }
     }
@@ -47,12 +48,12 @@ export const useCardPictureAnimation = (isFocused: boolean) => {
     const distanceX = clientX - centerX;
     const distanceY = clientY - centerY;
 
-    const rotationX = gsap.utils.mapRange(-coords.height / 2, coords.height / 2, -8, 8, distanceY);
     const rotationY = gsap.utils.mapRange(-coords.width / 2, coords.width / 2, -18, 18, distanceX);
+    const rotationX = gsap.utils.mapRange(-coords.height / 2, coords.height / 2, -12, 12, distanceY);
 
     gsap.to(current, {
-      rotationX: rotationX,
-      rotationY: rotationY,
+      rotationY,
+      rotationX,
       ease: "power2.out",
     });
   };
