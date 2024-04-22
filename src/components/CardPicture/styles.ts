@@ -6,6 +6,8 @@ export const CardPicture = styled.div`
   position: relative;
   width: 250px;
   height: 332px;
+  transform: perspective(1400px);
+  transform-style: preserve-3d;
 `;
 
 export const Art = styled.div<TransientPick<CardPictureProps, "picture">>`

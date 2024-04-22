@@ -24,7 +24,7 @@ export const useCardPictureAnimation = (isFocused: boolean) => {
     switch (type) {
       case "enter": {
         tl.to(textsRef.current, { autoAlpha: 0 });
-        tl.to(artRef.current, { scale: 1.15, rotationY: 0, rotateX: 0 }, "-=0.1");
+        tl.to(artRef.current, { scale: 1.1 }, "-=0.1");
         break;
       }
       case "leave": {
@@ -47,8 +47,8 @@ export const useCardPictureAnimation = (isFocused: boolean) => {
     const distanceX = clientX - centerX;
     const distanceY = clientY - centerY;
 
-    const rotationX = gsap.utils.mapRange(-coords.height / 2, coords.height / 2, -10, 10, distanceY);
-    const rotationY = gsap.utils.mapRange(-coords.width / 2, coords.width / 2, -22, 22, distanceX);
+    const rotationX = gsap.utils.mapRange(-coords.height / 2, coords.height / 2, -8, 8, distanceY);
+    const rotationY = gsap.utils.mapRange(-coords.width / 2, coords.width / 2, -18, 18, distanceX);
 
     gsap.to(current, {
       rotationX: rotationX,

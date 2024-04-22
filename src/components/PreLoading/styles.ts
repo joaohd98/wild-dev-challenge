@@ -11,7 +11,6 @@ export const XYZContainer = styled.div`
   ${({ theme }) => css`
     transform: translate(${theme.position.xCenter}, ${theme.position.yCenter}) scale(4);
   `}
-  perspective: 400px;
   z-index: 9;
 `;
 

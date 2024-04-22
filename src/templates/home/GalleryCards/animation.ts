@@ -72,7 +72,7 @@ export const useGalleryCardsAnimation = (current: number, total: number) => {
     tl.to(actual, { ...(isNext ? leftPosition : rightPosition), scale: 1, duration: 0.8 }, "<");
     tl.to(willDisappear, { ...disappear, duration: 0.4 }, "<");
     tl.set(willAppear, { ...(isNext ? rightPosition : leftPosition) }, "<");
-    tl.to(willAppear, { ...appear, duration: 0.8 }, "-=0.3");
+    tl.to(willAppear, { ...appear, duration: 0.6 }, "-=0.3");
   };
 
   return {

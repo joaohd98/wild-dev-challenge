@@ -3,7 +3,6 @@ import styled from "styled-components";
 export const TextOutlineSolid = styled.div`
   position: relative;
   width: 100%;
-  perspective: 250px;
 
   p {
     font-size: 101px;

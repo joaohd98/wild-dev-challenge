@@ -21,18 +21,19 @@ export const CardPicture = ({ picture, isFocused, position, total, changePositio
 
   return (
     <S.CardPicture ref={cardRef} className={className} onClick={onClickCard}>
-      <S.Art ref={artRef} $picture={picture} />
-      <S.TextContainer ref={textsRef}>
-        <TextOutlineSolid text={picture.name} />
-        <S.IndicatorSlideView>
-          <S.IndicatorText>{C.qtSlide(position, total)}</S.IndicatorText>
-          <S.Slides>
-            {C.slides(position, total).map((isCurrent, index) => (
-              <S.SlideDot key={index} $isCurrent={isCurrent} />
-            ))}
-          </S.Slides>
-        </S.IndicatorSlideView>
-      </S.TextContainer>
+      <S.Art ref={artRef} $picture={picture}>
+        <S.TextContainer ref={textsRef}>
+          <TextOutlineSolid text={picture.name} />
+          <S.IndicatorSlideView>
+            <S.IndicatorText>{C.qtSlide(position, total)}</S.IndicatorText>
+            <S.Slides>
+              {C.slides(position, total).map((isCurrent, index) => (
+                <S.SlideDot key={index} $isCurrent={isCurrent} />
+              ))}
+            </S.Slides>
+          </S.IndicatorSlideView>
+        </S.TextContainer>
+      </S.Art>
     </S.CardPicture>
   );
 };
