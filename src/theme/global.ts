@@ -51,6 +51,11 @@ export const GlobalStyles = createGlobalStyle`
   body {
     background-color: ${({ theme }) => theme.colors.blackCharcoal};
   }
+  
+  main {
+    opacity: 0;
+    visibility: hidden;
+  }
 
   a {
     cursor: pointer;

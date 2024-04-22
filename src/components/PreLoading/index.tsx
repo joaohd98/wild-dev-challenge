@@ -1,14 +1,13 @@
 import * as S from "./styles";
 import { preLoadingConst as C } from "./const";
-import { type PreLoadingProps } from "./props";
 import { usePreLoadingAnimation } from "./animation";
 import { useImageLoadTracker } from "@/hooks/image-load-tracker";
 
-export const PreLoading = ({ onFinishLoading }: PreLoadingProps) => {
+export const PreLoading = () => {
   const { containerRef, onChangeProgress } = usePreLoadingAnimation();
 
   useImageLoadTracker((toValue) => {
-    onChangeProgress(toValue, onFinishLoading);
+    onChangeProgress(toValue);
   });
 
   return (

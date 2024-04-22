@@ -6,16 +6,19 @@ export const ArtBackground = styled.div`
   overflow: hidden;
 `;
 
-export const Background = styled.div<{ $url: string; $isCurrent: boolean }>`
+export const BackgroundsContainer = styled.div`
+  > :not(:first-child) {
+    opacity: 0;
+    visibility: hidden;
+  }
+`;
+
+export const Background = styled.div<{ $url: string }>`
   position: absolute;
   left: 0;
   top: 0;
   height: 100%;
   width: 100%;
-  overflow: hidden;
-  opacity: ${({ $isCurrent }) => ($isCurrent ? 1 : 0)};
-  pointer-events: ${({ $isCurrent }) => ($isCurrent ? "auto" : "none")};
-  transition: opacity 0.5s ease-in;
 
   &:before {
     content: "";
@@ -27,7 +30,6 @@ export const Background = styled.div<{ $url: string; $isCurrent: boolean }>`
     background-image: url("${({ $url }) => $url}");
     background-size: cover;
     background-repeat: no-repeat;
-    filter: blur(100px);
     z-index: -1;
   }
 `;
@@ -42,6 +44,7 @@ export const InfoContainer = styled.div`
   line-height: 12px;
   letter-spacing: 0.08em;
   text-transform: uppercase;
+  z-index: 1;
 `;
 
 export const TextInfo = styled.p`

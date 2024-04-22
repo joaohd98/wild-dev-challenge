@@ -8,6 +8,8 @@ import { theme } from "@/theme";
 import { GlobalStyles } from "@/theme/global";
 import { GSAPInitializer } from "@/components/GSAPInitializer";
 import { CustomCursorProvider } from "@/contexts/custom-cursor";
+import { LoaderProvider } from "@/contexts/loader";
+import { PreLoading } from "@/components/PreLoading";
 
 export default function RootLayout({
   children,
@@ -22,7 +24,10 @@ export default function RootLayout({
             <GlobalStyles />
             <GSAPInitializer />
             <CustomCursorProvider>
-              <main>{children}</main>
+              <LoaderProvider>
+                <PreLoading />
+                <main>{children}</main>
+              </LoaderProvider>
             </CustomCursorProvider>
           </ThemeProvider>
         </StyledComponentsRegistry>

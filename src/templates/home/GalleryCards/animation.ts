@@ -9,7 +9,7 @@ export const useGalleryCardsAnimation = (current: number, total: number) => {
   const { leftPosition, centerPosition, rightPosition, disappear, appear } = useMemo(
     () => ({
       leftPosition: { left: 0, top: "100%", x: 0, y: "-100%" },
-      centerPosition: { left: "50%", top: "50%", x: "-50%", y: "-50%" },
+      centerPosition: { left: "50%", top: "50%", x: "-50%", y: "-50%", scale: 2.06 },
       rightPosition: { top: 0, left: "100%", x: "-100%", y: 0 },
       disappear: { scale: 0.8, autoAlpha: 0 },
       appear: { scale: 1, autoAlpha: 1 },
@@ -54,7 +54,7 @@ export const useGalleryCardsAnimation = (current: number, total: number) => {
     const tl = gsap.timeline({ defaults: { ease: "power1.out" } });
 
     tl.to(future, { ...centerPosition, duration: 0.8 });
-    tl.to(actual, { ...(isNext ? leftPosition : rightPosition), duration: 0.8 }, "<");
+    tl.to(actual, { ...(isNext ? leftPosition : rightPosition), scale: 1, duration: 0.8 }, "<");
     tl.to(willDisappear, { ...disappear, duration: 0.4 }, "<");
     tl.set(willAppear, { ...(isNext ? rightPosition : leftPosition) }, "<");
     tl.to(willAppear, { ...appear, duration: 0.8 }, "-=0.3");

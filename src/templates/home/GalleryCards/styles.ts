@@ -10,12 +10,12 @@ export const GalleryCards = styled.div`
   > :nth-child(2),
   > :last-child {
     opacity: 1;
-    transform: scale(1);
+    visibility: visible;
   }
 `;
 
 export const Card = styled(CardPicture)`
   position: absolute;
   opacity: 0;
-  transform: scale(0.8);
+  visibility: hidden;
 `;

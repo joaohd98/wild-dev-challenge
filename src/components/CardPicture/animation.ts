@@ -10,7 +10,6 @@ export const useCardPictureAnimation = (isFocused: boolean) => {
     const tl = gsap.timeline({ defaults: { ease: "power1.out" } });
 
     tl.to(textsRef.current, { autoAlpha: isFocused ? 1 : 0, duration: 0.3 });
-    tl.to(cardRef.current, { scale: isFocused ? 2.06 : 1, duration: 0.3 }, "-=0.2");
   }, [isFocused]);
 
   const onMouseEnterOrLeaveCard = (type: "enter" | "leave") => {
