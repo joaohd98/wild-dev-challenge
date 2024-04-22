@@ -1,55 +1,20 @@
-import { useRef } from "react";
+import { useEffect, useRef } from "react";
 import gsap from "gsap";
-import { useCursorListener } from "@/hooks/cursor-listener";
-import { useCustomCursorContext } from "@/contexts/custom-cursor";
-import { type CardPictureProps } from "@/components/CardPicture/props";
 
-export const useCardPictureAnimation = ({ picture, position }: Pick<CardPictureProps, "picture" | "position">) => {
-  const { showAsLink, noLongerLink } = useCustomCursorContext();
-
+export const useCardPictureAnimation = (isFocused: boolean) => {
   const cardRef = useRef(null);
   const artRef = useRef<HTMLDivElement>(null);
   const textsRef = useRef(null);
 
-  useCursorListener(
-    cardRef,
-    {
-      onListenMouseEnter: () => {
-        showAsLink(picture.name);
-        onMouseEnterOrLeave("enter");
-      },
-      onListenMouseLeave: () => {
-        noLongerLink();
-        onMouseEnterOrLeave("leave");
-      },
-      onListenMouseMove: ({ clientX, clientY }) => {
-        const current = artRef.current;
-        if (!current || position !== "center") {
-          return;
-        }
+  useEffect(() => {
+    const tl = gsap.timeline({ defaults: { ease: "power1.out" } });
 
-        const coords = current.getBoundingClientRect();
-        const centerY = coords.y + coords.height / 2;
-        const centerX = coords.x + coords.width / 2;
+    tl.to(textsRef.current, { autoAlpha: isFocused ? 1 : 0, duration: 0.3 });
+    tl.to(cardRef.current, { scale: isFocused ? 2.06 : 1, duration: 0.3 }, "-=0.2");
+  }, [isFocused]);
 
-        const distanceX = clientX - centerX;
-        const distanceY = clientY - centerY;
-
-        const rotationX = gsap.utils.mapRange(-coords.height / 2, coords.height / 2, -10, 10, distanceY);
-        const rotationY = gsap.utils.mapRange(-coords.width / 2, coords.width / 2, -22, 22, distanceX);
-
-        gsap.to(current, {
-          rotationX: rotationX,
-          rotationY: rotationY,
-          ease: "power2.out",
-        });
-      },
-    },
-    []
-  );
-
-  const onMouseEnterOrLeave = (type: "enter" | "leave") => {
-    if (position !== "center") {
+  const onMouseEnterOrLeaveCard = (type: "enter" | "leave") => {
+    if (!isFocused) {
       return;
     }
 
@@ -60,7 +25,7 @@ export const useCardPictureAnimation = ({ picture, position }: Pick<CardPictureP
     switch (type) {
       case "enter": {
         tl.to(textsRef.current, { autoAlpha: 0 });
-        tl.to(artRef.current, { scale: 1.15, rotationY: 0, rotateX: 0 });
+        tl.to(artRef.current, { scale: 1.15, rotationY: 0, rotateX: 0 }, "-=0.1");
         break;
       }
       case "leave": {
@@ -70,9 +35,34 @@ export const useCardPictureAnimation = ({ picture, position }: Pick<CardPictureP
     }
   };
 
+  const onMouseMoveCard = ({ clientX, clientY }: MouseEvent) => {
+    const current = artRef.current;
+    if (!current || !isFocused) {
+      return;
+    }
+
+    const coords = current.getBoundingClientRect();
+    const centerY = coords.y + coords.height / 2;
+    const centerX = coords.x + coords.width / 2;
+
+    const distanceX = clientX - centerX;
+    const distanceY = clientY - centerY;
+
+    const rotationX = gsap.utils.mapRange(-coords.height / 2, coords.height / 2, -10, 10, distanceY);
+    const rotationY = gsap.utils.mapRange(-coords.width / 2, coords.width / 2, -22, 22, distanceX);
+
+    gsap.to(current, {
+      rotationX: rotationX,
+      rotationY: rotationY,
+      ease: "power2.out",
+    });
+  };
+
   return {
     cardRef,
     artRef,
     textsRef,
+    onMouseEnterOrLeaveCard,
+    onMouseMoveCard,
   };
 };

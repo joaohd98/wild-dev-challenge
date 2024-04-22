@@ -1,37 +1,11 @@
-import styled, { css } from "styled-components";
+import styled from "styled-components";
 import { type CardPictureProps } from "@/components/CardPicture/props";
 import { type TransientPick } from "@/utils/transient-pick";
 
-export const CardPicture = styled.div<TransientPick<CardPictureProps, "position">>`
-  position: absolute;
+export const CardPicture = styled.div`
+  position: relative;
   width: 250px;
   height: 332px;
-  top: 0;
-  left: 0;
-
-  ${({ $position, theme }) => {
-    if ($position === "left") {
-      return css`
-        transform: translate(${theme.position.xLeft}, ${theme.position.yBottom});
-      `;
-    }
-
-    if ($position === "right") {
-      return css`
-        transform: translate(${theme.position.xRight}, ${theme.position.yTop});
-      `;
-    }
-
-    if ($position === "center") {
-      return css`
-        transform: translate(${theme.position.xCenter}, ${theme.position.yCenter}) scale(2.06);
-      `;
-    }
-
-    return css`
-      display: none;
-    `;
-  }};
 `;
 
 export const Art = styled.div<TransientPick<CardPictureProps, "picture">>`
@@ -50,14 +24,15 @@ export const Art = styled.div<TransientPick<CardPictureProps, "picture">>`
   border-radius: 10px;
 `;
 
-export const TextContainer = styled.div<{ $visible: boolean }>`
-  display: ${({ $visible }) => ($visible ? "flex" : "none")};
+export const TextContainer = styled.div`
+  display: flex;
   height: 100%;
   width: 100%;
   justify-content: center;
   align-items: center;
   flex-direction: column;
   margin-top: 4px;
+  opacity: 0;
 `;
 
 export const IndicatorSlideView = styled.div`
