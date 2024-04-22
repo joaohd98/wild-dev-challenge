@@ -4,7 +4,12 @@ import { useEffectWithPrevious } from "@/hooks/effect-with-previous";
 import { checkBoundaries } from "@/utils/check-boundaries";
 import { useCustomCursorContext } from "@/contexts/custom-cursor";
 
-export const useGalleryCardsAnimation = (current: number, total: number) => {
+export const useGalleryCardsAnimation = (
+  current: number,
+  total: number,
+  onStartTimeline: () => void,
+  onEndTimeline: () => void
+) => {
   const { showAsProgress, noLongerProgress } = useCustomCursorContext();
 
   const galleryRef = useRef<HTMLDivElement>(null);
@@ -55,6 +60,8 @@ export const useGalleryCardsAnimation = (current: number, total: number) => {
     const willAppear = cards[checkBoundaries(total, isNext ? currentValue + 1 : currentValue - 1)];
 
     const tl = gsap.timeline({
+      onStart: () => onStartTimeline(),
+      onComplete: () => onEndTimeline(),
       defaults: { ease: "power1.out" },
     });
 

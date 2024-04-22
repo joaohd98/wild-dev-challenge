@@ -24,7 +24,7 @@ export const useCardPictureAnimation = (isFocused: boolean) => {
     switch (type) {
       case "enter": {
         tl.to(textsRef.current, { autoAlpha: 0 });
-        tl.to(artRef.current, { scale: 1.1 }, "-=0.1");
+        tl.to(artRef.current, { scale: 1.12 }, "-=0.1");
         break;
       }
       case "leave": {
