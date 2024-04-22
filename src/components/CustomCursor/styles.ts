@@ -40,7 +40,7 @@ export const CircleEmpty = styled.circle`
 `;
 
 export const CircleProgress = styled.circle<{ $progress?: number }>`
-  stroke-dashoffset: 100;
+  stroke-dashoffset: -100;
   stroke: ${({ theme }) => theme.colors.white};
   stroke-linecap: round;
 `;
