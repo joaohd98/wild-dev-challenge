@@ -10,19 +10,17 @@ export const CardPicture = ({ picture, position, current, total, shouldAnimatedW
   return (
     <S.CardPicture ref={cardRef} $position={position}>
       <S.Art ref={artRef} $picture={picture} />
-      {position === "center" && (
-        <S.TextContainer ref={textsRef}>
-          <TextOutlineSolid text={picture.name} />
-          <S.IndicatorSlideView>
-            <S.IndicatorText>{C.qtSlide(current, total)}</S.IndicatorText>
-            <S.Slides>
-              {C.slides(current, total).map((isCurrent, index) => (
-                <S.SlideDot key={index} $isCurrent={isCurrent} />
-              ))}
-            </S.Slides>
-          </S.IndicatorSlideView>
-        </S.TextContainer>
-      )}
+      <S.TextContainer ref={textsRef} $visible={position === "center"}>
+        <TextOutlineSolid text={picture.name} />
+        <S.IndicatorSlideView>
+          <S.IndicatorText>{C.qtSlide(current, total)}</S.IndicatorText>
+          <S.Slides>
+            {C.slides(current, total).map((isCurrent, index) => (
+              <S.SlideDot key={index} $isCurrent={isCurrent} />
+            ))}
+          </S.Slides>
+        </S.IndicatorSlideView>
+      </S.TextContainer>
     </S.CardPicture>
   );
 };

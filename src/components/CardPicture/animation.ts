@@ -6,6 +6,7 @@ import { type CardPictureProps } from "@/components/CardPicture/props";
 
 export const useCardPictureAnimation = ({ picture, position }: Pick<CardPictureProps, "picture" | "position">) => {
   const { showAsLink, noLongerLink } = useCustomCursorContext();
+
   const cardRef = useRef(null);
   const artRef = useRef<HTMLDivElement>(null);
   const textsRef = useRef(null);
@@ -15,11 +16,11 @@ export const useCardPictureAnimation = ({ picture, position }: Pick<CardPictureP
     {
       onListenMouseEnter: () => {
         showAsLink(picture.name);
-        onMouseEnterOrLeave(1.15, 0);
+        onMouseEnterOrLeave("enter");
       },
       onListenMouseLeave: () => {
         noLongerLink();
-        onMouseEnterOrLeave(1, 1);
+        onMouseEnterOrLeave("leave");
       },
       onListenMouseMove: ({ clientX, clientY }) => {
         const current = artRef.current;
@@ -34,8 +35,8 @@ export const useCardPictureAnimation = ({ picture, position }: Pick<CardPictureP
         const distanceX = clientX - centerX;
         const distanceY = clientY - centerY;
 
-        const rotationX = gsap.utils.mapRange(-coords.height / 2, coords.height / 2, -8, 8, distanceY);
-        const rotationY = gsap.utils.mapRange(-coords.width / 2, coords.width / 2, -16, 16, distanceX);
+        const rotationX = gsap.utils.mapRange(-coords.height / 2, coords.height / 2, -10, 10, distanceY);
+        const rotationY = gsap.utils.mapRange(-coords.width / 2, coords.width / 2, -22, 22, distanceX);
 
         gsap.to(current, {
           rotationX: rotationX,
@@ -47,7 +48,7 @@ export const useCardPictureAnimation = ({ picture, position }: Pick<CardPictureP
     []
   );
 
-  const onMouseEnterOrLeave = (scale: number, autoAlpha: number) => {
+  const onMouseEnterOrLeave = (type: "enter" | "leave") => {
     if (position !== "center") {
       return;
     }
@@ -56,8 +57,17 @@ export const useCardPictureAnimation = ({ picture, position }: Pick<CardPictureP
 
     gsap.killTweensOf([artRef.current, textsRef.current]);
 
-    tl.to(textsRef.current, { autoAlpha });
-    tl.to(artRef.current, { scale });
+    switch (type) {
+      case "enter": {
+        tl.to(textsRef.current, { autoAlpha: 0 });
+        tl.to(artRef.current, { scale: 1.15, rotationY: 0, rotateX: 0 });
+        break;
+      }
+      case "leave": {
+        tl.to(artRef.current, { scale: 1, rotationY: 0, rotateX: 0 });
+        tl.to(textsRef.current, { autoAlpha: 1 });
+      }
+    }
   };
 
   return {

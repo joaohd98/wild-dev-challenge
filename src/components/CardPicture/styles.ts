@@ -44,10 +44,10 @@ export const Art = styled.div<TransientPick<CardPictureProps, "picture">>`
   border-radius: 10px;
 `;
 
-export const TextContainer = styled.div`
+export const TextContainer = styled.div<{ $visible: boolean }>`
+  display: ${({ $visible }) => ($visible ? "flex" : "none")};
   height: 100%;
   width: 100%;
-  display: flex;
   justify-content: center;
   align-items: center;
   flex-direction: column;

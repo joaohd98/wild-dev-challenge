@@ -35,4 +35,5 @@ export const OutlineText = styled.p`
   color: transparent;
   -webkit-text-stroke: 0.6px ${({ theme }) => theme.colors.white};
   mix-blend-mode: darken;
+  pointer-events: none;
 `;
