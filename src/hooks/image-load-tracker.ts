@@ -1,29 +1,41 @@
-import { useGSAP } from "@gsap/react";
-import { useRef } from "react";
+import { useEffect, useRef } from "react";
+import gsap from "gsap";
 
 export const useImageLoadTracker = (onEachImageLoaded: (toValue: number) => void) => {
   const loadedImagesQt = useRef(0);
 
-  useGSAP(() => {
-    const images = document.querySelectorAll<HTMLImageElement>('img[loading="eager"]');
-    const imagesQt = images.length;
+  useEffect(() => {
+    const backgroundImages = document.querySelectorAll<HTMLElement>("div");
+    const urls: string[] = [];
 
-    if (imagesQt === 0) {
+    backgroundImages.forEach((bg) => {
+      const url = gsap.getProperty(bg, "background-image") as string;
+      if (url.startsWith("url")) {
+        // extract the url from the property
+        urls.push(url.replace(/^url\(["']?/, "").replace(/["']?\)$/, ""));
+      }
+    });
+
+    const urlsQt = urls.length;
+    if (urlsQt === 0) {
       onEachImageLoaded(1);
       return;
     }
 
     const onLoadMedia = () => {
       loadedImagesQt.current++;
-      onEachImageLoaded(loadedImagesQt.current / imagesQt);
+      onEachImageLoaded(loadedImagesQt.current / urlsQt);
     };
 
-    images.forEach((image) => {
-      if (image.complete) {
+    urls.forEach((url) => {
+      const img = new Image();
+      img.src = url;
+
+      if (img.complete) {
         onLoadMedia();
       } else {
-        image.addEventListener("load", onLoadMedia);
+        img.addEventListener("load", onLoadMedia);
       }
     });
-  }, []);
+  }, [onEachImageLoaded]);
 };
