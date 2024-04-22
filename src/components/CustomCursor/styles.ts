@@ -16,7 +16,7 @@ export const CustomCursor = styled.div<{ $visible: boolean }>`
   z-index: 10;
   pointer-events: none;
 
-  mix-blend-mode: difference;
+  mix-blend-mode: exclusion;
 
   opacity: ${({ $visible }) => ($visible ? 1 : 0)};
   transition: opacity 0.2s ease-in;

@@ -4,11 +4,20 @@ import { TextOutlineSolid } from "@/components/TextOutlineSolid";
 import { cardPictureConst as C } from "@/components/CardPicture/const";
 import { useCardPictureAnimation } from "@/components/CardPicture/animation";
 
-export const CardPicture = ({ picture, position, current, total, shouldAnimatedWhenChange }: CardPictureProps) => {
+export const CardPicture = ({ picture, position, current, total, changeCurrent }: CardPictureProps) => {
   const { cardRef, artRef, textsRef } = useCardPictureAnimation({ picture, position });
 
+  const onClickCard = () => {
+    if (position !== "center") {
+      changeCurrent(current);
+      return;
+    }
+
+    window.open(picture.link, "_blank", "noopener,noreferrer");
+  };
+
   return (
-    <S.CardPicture ref={cardRef} $position={position}>
+    <S.CardPicture ref={cardRef} $position={position} onClick={onClickCard}>
       <S.Art ref={artRef} $picture={picture} />
       <S.TextContainer ref={textsRef} $visible={position === "center"}>
         <TextOutlineSolid text={picture.name} />

@@ -1,9 +1,21 @@
 import styled from "styled-components";
 
-export const ArtBackground = styled.div<{ $url: string }>`
+export const ArtBackground = styled.div`
   position: relative;
   height: 100%;
   overflow: hidden;
+`;
+
+export const Background = styled.div<{ $url: string; $isCurrent: boolean }>`
+  position: absolute;
+  left: 0;
+  top: 0;
+  height: 100%;
+  width: 100%;
+  overflow: hidden;
+  opacity: ${({ $isCurrent }) => ($isCurrent ? 1 : 0)};
+  pointer-events: ${({ $isCurrent }) => ($isCurrent ? "auto" : "none")};
+  transition: opacity 0.5s ease-in;
 
   &:before {
     content: "";

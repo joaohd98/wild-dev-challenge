@@ -12,6 +12,7 @@ export const XYZContainer = styled.div`
     transform: translate(${theme.position.xCenter}, ${theme.position.yCenter}) scale(4);
   `}
   perspective: 400px;
+  z-index: 9;
 `;
 
 export const XYZName = styled.h1`

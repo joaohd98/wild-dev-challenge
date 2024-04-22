@@ -2,7 +2,7 @@ import { type ReactNode } from "react";
 import { type Picture } from "@/api/get-pictures/response";
 
 export interface ArtBackgroundProps {
-  current: Picture;
+  current: number;
   pictures: Picture[];
   children: ReactNode;
 }

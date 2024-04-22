@@ -22,8 +22,14 @@ export const CardPicture = styled.div<TransientPick<CardPictureProps, "position"
       `;
     }
 
+    if ($position === "center") {
+      return css`
+        transform: translate(${theme.position.xCenter}, ${theme.position.yCenter}) scale(2.06);
+      `;
+    }
+
     return css`
-      transform: translate(${theme.position.xCenter}, ${theme.position.yCenter}) scale(2.06);
+      display: none;
     `;
   }};
 `;
