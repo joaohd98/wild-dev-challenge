@@ -2,7 +2,6 @@ import { createContext, type ReactNode, useContext, useEffect, useState } from "
 import gsap from "gsap";
 import { type CustomCursorContextProps } from "./props";
 import { CustomCursor } from "@/components/CustomCursor";
-import { type CustomCursorProps } from "@/components/CustomCursor/props";
 
 const DEFAULT_STATE: CustomCursorContextProps = {
   showAsLink: () => null,
@@ -18,31 +17,32 @@ export const CustomCursorProvider = ({
 }: Readonly<{
   children: ReactNode;
 }>) => {
-  const [props, setProps] = useState<CustomCursorProps>({ visible: false });
+  const [visibleLink, setVisibleLink] = useState(false);
+  const [visibleProgress, setVisibleProgress] = useState(false);
+  const [progress, setProgress] = useState(0);
+  const [link, setLink] = useState<string>();
 
   useEffect(() => {
-    gsap.set(document.body, { cursor: props.visible ? "none" : "inherit" });
-  }, [props.visible]);
+    gsap.set(document.body, { cursor: visibleLink || visibleProgress ? "none" : "inherit" });
+  }, [visibleLink, visibleProgress]);
 
-  const showAsLink: CustomCursorContextProps["showAsLink"] = (link) => {
-    setProps({
-      link,
-      visible: true,
-      progress: undefined,
-    });
+  const showAsLink: CustomCursorContextProps["showAsLink"] = (newLink) => {
+    setLink(newLink);
+    setVisibleLink(true);
   };
 
-  const noLongerLink: CustomCursorContextProps["noLongerLink"] = () => setProps({ ...props, visible: false });
-
-  const showAsProgress: CustomCursorContextProps["showAsProgress"] = (progress) => {
-    setProps({
-      progress,
-      visible: true,
-      link: undefined,
-    });
+  const noLongerLink: CustomCursorContextProps["noLongerLink"] = () => {
+    setVisibleLink(false);
   };
 
-  const noLongerProgress: CustomCursorContextProps["noLongerProgress"] = () => setProps({ ...props, visible: false });
+  const showAsProgress: CustomCursorContextProps["showAsProgress"] = (newProgress) => {
+    setProgress(newProgress);
+    setVisibleProgress(true);
+  };
+
+  const noLongerProgress: CustomCursorContextProps["noLongerProgress"] = () => {
+    setVisibleProgress(false);
+  };
 
   return (
     <CustomCursorContext.Provider
@@ -53,7 +53,7 @@ export const CustomCursorProvider = ({
         noLongerProgress,
       }}
     >
-      <CustomCursor {...props} />
+      <CustomCursor link={link} progress={progress} visibleProgress={visibleProgress} visibleLink={visibleLink} />
       {children}
     </CustomCursorContext.Provider>
   );

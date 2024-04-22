@@ -18,8 +18,7 @@ export const CustomCursor = styled.div<{ $visible: boolean }>`
 
   mix-blend-mode: exclusion;
 
-  opacity: ${({ $visible }) => ($visible ? 1 : 0)};
-  transition: opacity 0.2s ease-in;
+  visibility: ${({ $visible }) => ($visible ? "visible" : "hidden")};
 `;
 
 export const CircleSvg = styled.svg`
@@ -41,6 +40,7 @@ export const CircleEmpty = styled.circle`
 `;
 
 export const CircleProgress = styled.circle<{ $progress?: number }>`
+  stroke-dashoffset: 100;
   stroke: ${({ theme }) => theme.colors.white};
   stroke-linecap: round;
 `;

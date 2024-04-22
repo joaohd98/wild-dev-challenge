@@ -2,8 +2,11 @@ import { useEffect, useMemo, useRef } from "react";
 import gsap from "gsap";
 import { useEffectWithPrevious } from "@/hooks/effect-with-previous";
 import { checkBoundaries } from "@/utils/check-boundaries";
+import { useCustomCursorContext } from "@/contexts/custom-cursor";
 
 export const useGalleryCardsAnimation = (current: number, total: number) => {
+  const { showAsProgress, noLongerProgress } = useCustomCursorContext();
+
   const galleryRef = useRef<HTMLDivElement>(null);
 
   const { leftPosition, centerPosition, rightPosition, disappear, appear } = useMemo(
@@ -51,9 +54,21 @@ export const useGalleryCardsAnimation = (current: number, total: number) => {
     const future = cards[currentValue];
     const willAppear = cards[checkBoundaries(total, isNext ? currentValue + 1 : currentValue - 1)];
 
-    const tl = gsap.timeline({ defaults: { ease: "power1.out" } });
+    const tl = gsap.timeline({
+      defaults: { ease: "power1.out" },
+    });
 
-    tl.to(future, { ...centerPosition, duration: 0.8 });
+    tl.to(future, {
+      ...centerPosition,
+      onUpdate: function () {
+        showAsProgress(this.progress());
+      },
+      onComplete: () => {
+        noLongerProgress();
+      },
+      duration: 0.8,
+    });
+
     tl.to(actual, { ...(isNext ? leftPosition : rightPosition), scale: 1, duration: 0.8 }, "<");
     tl.to(willDisappear, { ...disappear, duration: 0.4 }, "<");
     tl.set(willAppear, { ...(isNext ? rightPosition : leftPosition) }, "<");

@@ -1,5 +1,6 @@
 export interface CustomCursorProps {
-  visible: boolean;
-  progress?: number;
+  progress: number;
   link?: string;
+  visibleProgress: boolean;
+  visibleLink: boolean;
 }
