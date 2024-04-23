@@ -8,8 +8,8 @@ export const useArtBackgroundAnimation = (current: number) => {
   useEffectWithPrevious((preValue, currentValue) => {
     const tl = gsap.timeline({
       defaults: {
-        ease: "power1.out",
-        duration: 0.6,
+        ease: "power1.in",
+        duration: 0.7,
       },
     });
 

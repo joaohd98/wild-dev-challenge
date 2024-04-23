@@ -5,14 +5,12 @@ export const TextOutlineSolid = styled.div`
   width: 100%;
 
   p {
-    font-size: 220px;
-    line-height: 176px;
-    letter-spacing: 0.038em;
-
+    font-size: 101px;
+    line-height: 84px;
+    letter-spacing: 0.055em;
     text-align: center;
     text-transform: uppercase;
     white-space: pre;
-    pointer-events: none;
   }
 `;
 

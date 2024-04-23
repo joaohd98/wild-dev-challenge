@@ -1,15 +1,39 @@
 import * as S from "./styles";
 import { type CardPictureProps } from "@/components/CardPicture/props";
-import { useCardPictureCursor } from "@/components/CardPicture/cursor";
-import { useCardPictureAnimation } from "@/components/CardPicture/animation";
 
-export const CardPicture = ({ picture, isFocused, changePosition, className, changeMouseHover }: CardPictureProps) => {
+import { useCardPictureAnimation } from "@/components/CardPicture/animation";
+import { useCustomCursorContext } from "@/contexts/custom-cursor";
+import { useCursorListener } from "@/hooks/cursor-listener";
+
+export const CardPicture = ({
+  picture,
+  isFocused,
+  changePosition,
+  changeMouseHover,
+  complement,
+  className,
+}: CardPictureProps) => {
+  const { showAsLink, noLongerLink } = useCustomCursorContext();
   const { cardRef, artRef, onMouseMoveCard, onMouseEnterOrLeaveCard } = useCardPictureAnimation(
     isFocused,
     changeMouseHover
   );
 
-  useCardPictureCursor({ name: picture.name, cardRef, onMouseMoveCard, onMouseEnterOrLeaveCard });
+  useCursorListener(
+    cardRef,
+    {
+      onListenMouseEnter: () => {
+        showAsLink(picture.name);
+        onMouseEnterOrLeaveCard("enter");
+      },
+      onListenMouseLeave: () => {
+        noLongerLink();
+        onMouseEnterOrLeaveCard("leave");
+      },
+      onListenMouseMove: onMouseMoveCard,
+    },
+    []
+  );
 
   const onClickCard = () => {
     if (!isFocused) {
@@ -22,7 +46,9 @@ export const CardPicture = ({ picture, isFocused, changePosition, className, cha
 
   return (
     <S.CardPicture ref={cardRef} className={className} onClick={onClickCard}>
-      <S.Art ref={artRef} $picture={picture} />
+      <S.Art ref={artRef} $picture={picture}>
+        {complement}
+      </S.Art>
     </S.CardPicture>
   );
 };

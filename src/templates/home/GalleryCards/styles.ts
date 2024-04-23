@@ -2,11 +2,6 @@ import styled from "styled-components";
 import { CardPicture } from "@/components/CardPicture";
 
 export const GalleryCards = styled.div`
-  height: ${({ theme }) => theme.screenHeight};
-  margin: ${({ theme }) => theme.padding};
-`;
-
-export const CardsContainer = styled.div`
   position: relative;
   height: ${({ theme }) => theme.screenHeight};
   margin: ${({ theme }) => theme.padding};
@@ -26,45 +21,42 @@ export const Card = styled(CardPicture)`
 `;
 
 export const TextContainer = styled.div<{ $visible: boolean }>`
-  position: absolute;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%);
   display: flex;
+  height: 100%;
+  width: 100%;
   justify-content: center;
   align-items: center;
   flex-direction: column;
   margin-top: 4px;
-  pointer-events: none;
   opacity: ${({ $visible }) => ($visible ? 1 : 0)};
   transition: opacity 0.3s ease-in;
 `;
 
 export const IndicatorSlideView = styled.div`
   display: flex;
-  gap: 24px;
+  gap: 16px;
   align-items: center;
+  z-index: 1;
   margin-top: 2px;
 `;
 
 export const IndicatorText = styled.p`
   font-family: var(--helvetica);
-  font-size: 10px;
+  font-size: 5px;
   font-weight: 400;
-  line-height: 11.5px;
+  line-height: 6.5px;
   letter-spacing: 0.08em;
 `;
 
 export const Slides = styled.div`
   display: flex;
-  gap: 8px;
+  gap: 5px;
 `;
 
 export const SlideDot = styled.div<{ $isCurrent: boolean }>`
-  width: 5px;
-  height: 8px;
+  width: 1.5px;
+  height: 3.5px;
   border-radius: 3px;
   border: 1px ${({ theme }) => theme.colors.white} solid;
   background-color: ${({ $isCurrent, theme }) => ($isCurrent ? theme.colors.white : "transparent")};
-  transition: background-color 0.3s ease-in;
 `;

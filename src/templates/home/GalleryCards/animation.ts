@@ -21,8 +21,8 @@ export const useGalleryCardsAnimation = (current: number, total: number, changeC
       leftPosition: { left: 0, top: "100%", x: 0, y: "-100%" },
       centerPosition: { left: "50%", top: "50%", x: "-50%", y: "-50%", scale: 2.06 },
       rightPosition: { top: 0, left: "100%", x: "-100%", y: 0 },
-      disappear: { scale: 0.6, autoAlpha: 0 },
       appear: { scale: 1, autoAlpha: 1 },
+      disappear: { scale: 0.6, autoAlpha: 0 },
     }),
     []
   );

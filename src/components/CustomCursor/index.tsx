@@ -2,9 +2,19 @@ import { useMemo } from "react";
 import * as S from "./styles";
 import { type CustomCursorProps } from "@/components/CustomCursor/props";
 import { useCustomCursorAnimation } from "@/components/CustomCursor/animation";
+import { useCursorListener } from "@/hooks/cursor-listener";
 
 export const CustomCursor = ({ visibleProgress, visibleLink, link, progress }: CustomCursorProps) => {
-  const { cursorRef } = useCustomCursorAnimation();
+  const { cursorRef, onMouseListener } = useCustomCursorAnimation();
+
+  useCursorListener(
+    "body",
+    {
+      onListenMouseEnter: onMouseListener,
+      onListenMouseMove: onMouseListener,
+    },
+    []
+  );
 
   const shouldShowProgress = visibleProgress;
   const shouldShowLink = !visibleProgress && visibleLink;
