@@ -3,8 +3,7 @@ import { type Picture } from "@/api/get-pictures/response";
 export interface CardPictureProps {
   picture: Picture;
   isFocused: boolean;
-  position: number;
-  total: number;
+  changeFocus: (focus: boolean) => void;
   changePosition: () => void;
   className?: string;
 }
