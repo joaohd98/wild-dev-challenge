@@ -1,11 +1,16 @@
-import { useRef } from "react";
+import { useEffect, useRef } from "react";
 import Observer from "gsap/Observer";
-import { useEffectLoadedOnce } from "@/hooks/effect-loaded-once";
+import { useLoaderContext } from "@/contexts/loader";
 
 export const useObserverTimeline = (onUp: () => void, onDown: () => void) => {
+  const { hasLoading } = useLoaderContext();
   const isDuringTimeline = useRef(false);
 
-  useEffectLoadedOnce(() => {
+  useEffect(() => {
+    if (!hasLoading) {
+      return;
+    }
+
     Observer.create({
       type: "wheel,touch",
       onDown: () => {
@@ -24,7 +29,7 @@ export const useObserverTimeline = (onUp: () => void, onDown: () => void) => {
       tolerance: 100,
       preventDefault: true,
     });
-  });
+  }, [hasLoading, onDown, onUp]);
 
   const onStartTimeline = () => {
     isDuringTimeline.current = true;
