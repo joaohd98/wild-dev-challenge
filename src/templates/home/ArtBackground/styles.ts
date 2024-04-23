@@ -1,4 +1,5 @@
 import styled from "styled-components";
+import Image from "next/image";
 
 export const ArtBackground = styled.div`
   position: relative;
@@ -31,15 +32,12 @@ export const Container = styled.div`
   }
 `;
 
-export const Background = styled.div<{ $url: string }>`
+export const Background = styled(Image)`
   position: absolute;
   left: -9.75%;
   top: -87%;
   height: 274%;
   width: 116%;
-  background-image: url("${({ $url }) => $url}");
-  background-size: cover;
-  background-repeat: no-repeat;
   z-index: -1;
 `;
 

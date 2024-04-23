@@ -24,6 +24,7 @@ export const SolidText = styled.p`
   float: left;
   left: 50%;
   transform: translateX(-50%);
+  z-index: 1;
 `;
 
 export const OutlineText = styled.p`
@@ -33,6 +34,6 @@ export const OutlineText = styled.p`
   transform: translate(-50%, -50%);
   color: transparent;
   -webkit-text-stroke: 1px ${({ theme }) => theme.colors.white};
-  mix-blend-mode: darken;
   pointer-events: none;
+  z-index: 0;
 `;

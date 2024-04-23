@@ -46,9 +46,10 @@ export const CardPicture = ({
 
   return (
     <S.CardPicture ref={cardRef} className={className} onClick={onClickCard}>
-      <S.Art ref={artRef} $picture={picture}>
-        {complement}
-      </S.Art>
+      <S.ArtContainer>
+        <S.Art ref={artRef} src={picture.image.small} alt={picture.name} height={680} width={512} />
+      </S.ArtContainer>
+      {complement}
     </S.CardPicture>
   );
 };

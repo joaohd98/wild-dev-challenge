@@ -3,7 +3,7 @@ import gsap from "gsap";
 
 export const useCardPictureAnimation = (isFocused: boolean, changeMouseHover: (isMouseHover: boolean) => void) => {
   const cardRef = useRef(null);
-  const artRef = useRef<HTMLDivElement>(null);
+  const artRef = useRef<HTMLImageElement>(null);
 
   useEffect(() => {
     const tl = gsap.timeline({ defaults: { ease: "power1.out", duration: 0.3 } });

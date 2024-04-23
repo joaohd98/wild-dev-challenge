@@ -11,7 +11,7 @@ export const ArtBackground = ({ current, pictures, children }: ArtBackgroundProp
       <S.BackgroundsContainer>
         {pictures.map((picture, index) => (
           <S.Container key={index} ref={setBackgroundRef(index)}>
-            <S.Background $url={picture.image.big} />
+            <S.Background src={picture.image.big} alt={picture.name} width={1024} height={1360} />
             <S.InfoContainer>
               <S.TextInfo>{picture.artist}</S.TextInfo>
               <S.TextInfo>{C.companyPrefix(picture.company)}</S.TextInfo>
@@ -23,7 +23,6 @@ export const ArtBackground = ({ current, pictures, children }: ArtBackgroundProp
           </S.Container>
         ))}
       </S.BackgroundsContainer>
-
       {children}
     </S.ArtBackground>
   );
