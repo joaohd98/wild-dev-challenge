@@ -8,7 +8,7 @@ export const XYZContainer = styled.div`
   position: absolute;
   top: 50%;
   left: 50%;
-  z-index: 9;
+  z-index: 10;
 `;
 
 export const XYZName = styled.h1`

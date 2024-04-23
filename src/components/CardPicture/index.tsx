@@ -3,8 +3,11 @@ import { type CardPictureProps } from "@/components/CardPicture/props";
 import { useCardPictureCursor } from "@/components/CardPicture/cursor";
 import { useCardPictureAnimation } from "@/components/CardPicture/animation";
 
-export const CardPicture = ({ picture, isFocused, changePosition, className }: CardPictureProps) => {
-  const { cardRef, artRef, onMouseMoveCard, onMouseEnterOrLeaveCard } = useCardPictureAnimation(isFocused);
+export const CardPicture = ({ picture, isFocused, changePosition, className, changeMouseHover }: CardPictureProps) => {
+  const { cardRef, artRef, onMouseMoveCard, onMouseEnterOrLeaveCard } = useCardPictureAnimation(
+    isFocused,
+    changeMouseHover
+  );
 
   useCardPictureCursor({ name: picture.name, cardRef, onMouseMoveCard, onMouseEnterOrLeaveCard });
 

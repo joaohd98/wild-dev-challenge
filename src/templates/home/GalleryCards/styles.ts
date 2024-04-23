@@ -25,7 +25,7 @@ export const Card = styled(CardPicture)`
   visibility: hidden;
 `;
 
-export const TextContainer = styled.div`
+export const TextContainer = styled.div<{ $visible: boolean }>`
   position: absolute;
   top: 50%;
   left: 50%;
@@ -35,8 +35,9 @@ export const TextContainer = styled.div`
   align-items: center;
   flex-direction: column;
   margin-top: 4px;
-  z-index: 2;
   pointer-events: none;
+  opacity: ${({ $visible }) => ($visible ? 1 : 0)};
+  transition: opacity 0.3s ease-in;
 `;
 
 export const IndicatorSlideView = styled.div`

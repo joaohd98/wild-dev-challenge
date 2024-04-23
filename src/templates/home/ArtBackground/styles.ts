@@ -53,7 +53,7 @@ export const InfoContainer = styled.div`
   line-height: 12px;
   letter-spacing: 0.08em;
   text-transform: uppercase;
-  z-index: 2;
+  z-index: 1;
 `;
 
 export const TextInfo = styled.p`

@@ -34,7 +34,7 @@ export const OutlineText = styled.p`
   left: 50%;
   transform: translate(-50%, -50%);
   color: transparent;
-  -webkit-text-stroke: 0.6px ${({ theme }) => theme.colors.white};
+  -webkit-text-stroke: 1px ${({ theme }) => theme.colors.white};
   mix-blend-mode: darken;
   pointer-events: none;
 `;

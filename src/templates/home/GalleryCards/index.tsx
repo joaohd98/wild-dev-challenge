@@ -1,3 +1,4 @@
+import { useState } from "react";
 import * as S from "./styles";
 import { type GalleryCardsProps } from "@/templates/home/GalleryCards/props";
 import { useGalleryCardsAnimation } from "@/templates/home/GalleryCards/animation";
@@ -5,6 +6,7 @@ import { TextOutlineSolid } from "@/components/TextOutlineSolid";
 import { cardPictureConst as C } from "@/components/CardPicture/const";
 
 export const GalleryCards = ({ current, pictures, changeCurrent }: GalleryCardsProps) => {
+  const [isMouseHover, setMouseHover] = useState(false);
   const total = pictures.length;
   const { galleryRef } = useGalleryCardsAnimation(current, total, changeCurrent);
 
@@ -17,11 +19,11 @@ export const GalleryCards = ({ current, pictures, changeCurrent }: GalleryCardsP
             picture={picture}
             isFocused={index === current}
             changePosition={() => changeCurrent(index)}
-            changeFocus={() => null}
+            changeMouseHover={setMouseHover}
           />
         ))}
       </S.CardsContainer>
-      <S.TextContainer>
+      <S.TextContainer $visible={!isMouseHover}>
         <TextOutlineSolid text={pictures[current].name} />
         <S.IndicatorSlideView>
           <S.IndicatorText>{C.qtSlide(current, total)}</S.IndicatorText>

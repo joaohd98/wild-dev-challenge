@@ -7,7 +7,7 @@ export const CustomCursor = styled.div`
   top: -21px;
   left: -21px;
 
-  z-index: 10;
+  z-index: 9;
   pointer-events: none;
 
   mix-blend-mode: exclusion;

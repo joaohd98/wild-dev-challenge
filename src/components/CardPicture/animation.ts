@@ -1,7 +1,7 @@
 import { useEffect, useRef } from "react";
 import gsap from "gsap";
 
-export const useCardPictureAnimation = (isFocused: boolean) => {
+export const useCardPictureAnimation = (isFocused: boolean, changeMouseHover: (isMouseHover: boolean) => void) => {
   const cardRef = useRef(null);
   const artRef = useRef<HTMLDivElement>(null);
 
@@ -23,11 +23,13 @@ export const useCardPictureAnimation = (isFocused: boolean) => {
 
     switch (type) {
       case "enter": {
+        tl.call(() => changeMouseHover(true));
         tl.to(artRef.current, { scale: 1.12 });
         break;
       }
       case "leave": {
         tl.to(artRef.current, { scale: 1, rotationY: 0, rotationX: 0 });
+        tl.call(() => changeMouseHover(false), [], "-=0.1");
       }
     }
   };
