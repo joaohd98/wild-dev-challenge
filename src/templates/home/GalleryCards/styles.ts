@@ -29,6 +29,7 @@ export const TextContainer = styled.div<{ $visible: boolean }>`
   flex-direction: column;
   margin-top: 4px;
   opacity: ${({ $visible }) => ($visible ? 1 : 0)};
+  pointer-events: ${({ $visible }) => ($visible ? "auto" : "none")};
   transition: opacity 0.3s ease-in;
 `;
 

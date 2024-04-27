@@ -5,13 +5,13 @@ import { useCustomCursorAnimation } from "@/components/CustomCursor/animation";
 import { useCursorListener } from "@/hooks/cursor-listener";
 
 export const CustomCursor = ({ visibleProgress, visibleLink, link, progress }: CustomCursorProps) => {
-  const { cursorRef, onMouseListener } = useCustomCursorAnimation();
+  const { cursorRef, onListenMouseMove, onListenMouseEnter } = useCustomCursorAnimation();
 
   useCursorListener(
     "body",
     {
-      onListenMouseEnter: onMouseListener,
-      onListenMouseMove: onMouseListener,
+      onListenMouseMove,
+      onListenMouseEnter,
     },
     []
   );

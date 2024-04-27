@@ -4,8 +4,10 @@ import { useRef } from "react";
 export const useCustomCursorAnimation = () => {
   const cursorRef = useRef(null);
 
-  const onMouseListener = (event: MouseEvent) =>
-    gsap.to(cursorRef.current, { x: event.clientX, y: event.clientY, duration: 0.05 });
+  const onListenMouseEnter = (event: MouseEvent) => gsap.set(cursorRef.current, { x: event.clientX, y: event.clientY });
 
-  return { cursorRef, onMouseListener };
+  const onListenMouseMove = (event: MouseEvent) =>
+    gsap.to(cursorRef.current, { x: event.clientX, y: event.clientY, duration: 0.5, ease: "power1.out" });
+
+  return { cursorRef, onListenMouseEnter, onListenMouseMove };
 };

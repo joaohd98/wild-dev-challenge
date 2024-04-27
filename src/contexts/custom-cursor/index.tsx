@@ -1,5 +1,4 @@
-import { createContext, type ReactNode, useContext, useEffect, useState } from "react";
-import gsap from "gsap";
+import { createContext, type ReactNode, useContext, useState } from "react";
 import { type CustomCursorContextProps } from "./props";
 import { CustomCursor } from "@/components/CustomCursor";
 
@@ -21,10 +20,6 @@ export const CustomCursorProvider = ({
   const [visibleProgress, setVisibleProgress] = useState(false);
   const [progress, setProgress] = useState(0);
   const [link, setLink] = useState<string>();
-
-  useEffect(() => {
-    gsap.set(document.body, { cursor: visibleLink || visibleProgress ? "none" : "inherit" });
-  }, [visibleLink, visibleProgress]);
 
   const showAsLink: CustomCursorContextProps["showAsLink"] = (newLink) => {
     setLink(newLink);
